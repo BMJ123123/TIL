@@ -1,0 +1,21 @@
+* gvim 실행
+vim 편집기 진입
+```
+cd {{주소텍스트}} // :cd C:\Users\atr13\new_folder
+:w {{파일이름}}.java // :w AAA.java
+```
+
+cmd 실행
+```
+cd {{주소 텍스트}} // cd C:\Users\atr13\new_folder
+javac {{파일이름}}.java // javac CCC.java
+java -cp . {{파일이름}} // java -cp . CCC
+```
+
+
+/* 명시점
+vim에서 :w으로 저장하기
+소스코드 변경했으면 cmd 에서 javac 로 class 재구성 // 안 하면 마지막으로 javac한 소스코드 실행됨. :w 로 파일저장을 해도 !
+이후 java -cp . {{파일이름}} 실행
+java {{파일이름}} 은 java 경로 설정 뭐시기로 안 될 수 있음.
+*/
