@@ -19,3 +19,20 @@ vim에서 :w으로 저장하기
 이후 java -cp . {{파일이름}} 실행
 java {{파일이름}} 은 java 경로 설정 뭐시기로 안 될 수 있음.
 */
+
+/* vsc에서 자동정렬키가 먹히지 않을 경우 (shift + alf + f)
+vsc 에서 'Ctrl + Shift + P' → 'settings.json' ("기본 설정: 사용자 설정 열기 (JSON)")
+
+{
+    "workbench.colorTheme": "Ayu Mirage Bordered",
+    "security.workspace.trust.untrustedFiles": "open",
+    
+    "[java]": {
+        "editor.defaultFormatter": "redhat.java"
+    },
+
+    "editor.formatOnSave": true
+}
+
+기입
+*/
