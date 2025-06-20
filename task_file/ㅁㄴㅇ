@@ -1,0 +1,43 @@
+class Animal implements TestInterface {
+    private String name; // 동물 이름 저장
+
+    // 생성자
+    public Animal(String name) {
+        this.name = name;
+    }
+
+    // 동물의 이름 출력
+    public void printName() {
+        System.out.println(name + "입니다");
+    }
+
+    void animalOne() {
+        System.out.println("animalOne 메소드입니다.");
+    }
+
+    public void animalDog() {
+        System.out.println("animalDog 메소드입니다.");
+    }
+
+    // interface에 정의된 메서드 구현
+    public void animalCat() {}
+    public void animalCaw() {}
+    public void animalSnake() {}
+}
+
+public class test3 {
+    public static void main(String[] args) {
+        Animal animal = new Animal("Dog");
+
+        animal.printName();
+        animal.animalOne();
+        animal.animalDog();
+    }
+}
+
+interface TestInterface { // 수정할 필요 없음
+    public void animalDog();
+    public void animalCat();
+    public void animalCaw();
+    public void animalSnake();
+}
