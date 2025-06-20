@@ -1,36 +1,217 @@
-import java.util.Scanner;
+✅ 전체 코드 (재참고)
+java
+복사
+편집
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
-class Addition {
-    protected int a, b;
+public class ToggleLabelApp extends JFrame {
+    private JLabel label;
+    private JButton button;
 
-    public Addition(int a, int b) {
-        this.a = a;
-        this.b = b;
-    }
+    public ToggleLabelApp() {
+        setTitle("Toggle Label");
+        setSize(300, 150);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
 
-    public int getSum() {
-        return a + b;
-    }
-}
+        label = new JLabel("마지막 문제입니다");
+        button = new JButton("클릭");
 
-public class test4 extends Addition {
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String current = label.getText();
+                if (current.equals("마지막 문제입니다")) {
+                    label.setText("수고하셨습니다");
+                } else {
+                    label.setText("마지막 문제입니다");
+                }
+            }
+        });
 
-    public test4(int a, int b) {
-        super(a, b);
-    }
-
-    public void printTable() {
-        int min = Math.min(a, b);
-        for (int i = 1; i <= 9; i++)
-            System.out.println(min + " x " + i + " = " + (min * i));
+        add(label);
+        add(button);
+        setVisible(true);
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int x = sc.nextInt(), y = sc.nextInt();
-        test4 m = new test4(x, y);
-        System.out.println("합: " + m.getSum());
-        m.printTable();
-        sc.close();
+        new ToggleLabelApp();
     }
 }
+✅ 한 줄씩 상세 설명
+java
+복사
+편집
+import javax.swing.*;
+자바 표준 GUI 라이브러리인 Swing 패키지 전체 임포트.
+
+JFrame, JLabel, JButton 등이 포함됨.
+
+C++로 치면 Qt의 <QWidget>, <QPushButton> 임포트와 유사.
+
+java
+복사
+편집
+import java.awt.*;
+GUI 배치용 레이아웃 매니저(FlowLayout 등)를 위한 AWT 패키지.
+
+Swing은 AWT 위에서 확장된 GUI 프레임워크.
+
+java
+복사
+편집
+import java.awt.event.*;
+이벤트 리스너 (ex. 버튼 클릭) 관련 클래스 임포트.
+
+C++로 치면 시그널/슬롯 처리 구조와 비슷한 이벤트 콜백 설정용.
+
+java
+복사
+편집
+public class ToggleLabelApp extends JFrame {
+JFrame을 상속한 ToggleLabelApp 클래스 정의.
+
+즉, 이 클래스 자체가 하나의 윈도우 역할을 수행.
+
+C++로 치면 class MyWindow : public QMainWindow 구조에 해당.
+
+java
+복사
+편집
+private JLabel label;
+private JButton button;
+클래스 내부에서 사용할 라벨과 버튼 선언.
+
+JLabel: 텍스트 표시용
+
+JButton: 사용자 클릭 이벤트용 버튼
+
+java
+복사
+편집
+public ToggleLabelApp() {
+생성자 정의. 객체 생성 시 GUI 구성 작업이 이 안에서 이루어짐.
+
+java
+복사
+편집
+setTitle("Toggle Label");
+윈도우 상단의 제목줄 텍스트 설정.
+
+C++의 setWindowTitle("...")와 동일.
+
+java
+복사
+편집
+setSize(300, 150);
+창의 가로 세로 크기 설정 (픽셀 단위).
+
+width = 300, height = 150
+
+java
+복사
+편집
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+창 닫을 때 프로그램 전체 종료되도록 설정.
+
+없으면 창만 닫히고 프로세스는 남음.
+
+java
+복사
+편집
+setLayout(new FlowLayout());
+컴포넌트 배치를 좌→우 흐름으로 정렬하는 레이아웃 지정.
+
+FlowLayout: 왼쪽부터 순서대로 자동 배치
+
+C++의 수동 위젯 배치 대신 layout manager 방식 사용
+
+java
+복사
+편집
+label = new JLabel("마지막 문제입니다");
+초기 라벨 생성 + 문구 설정
+
+"마지막 문제입니다" 텍스트가 윈도우에 표시됨
+
+java
+복사
+편집
+button = new JButton("클릭");
+"클릭"이라는 문구를 가진 버튼 생성
+
+java
+복사
+편집
+button.addActionListener(new ActionListener() {
+버튼에 이벤트 리스너 등록
+
+자바는 함수 포인터 대신 익명 클래스 기반 콜백 구조를 사용
+
+java
+복사
+편집
+    public void actionPerformed(ActionEvent e) {
+버튼 클릭 시 실행될 메서드.
+
+C++의 connect() 후 연결되는 슬롯 함수와 유사한 동작
+
+java
+복사
+편집
+    String current = label.getText();
+현재 라벨에 표시된 문자열을 가져옴
+
+이후 조건 분기용으로 저장
+
+java
+복사
+편집
+    if (current.equals("마지막 문제입니다")) {
+        label.setText("수고하셨습니다");
+    } else {
+        label.setText("마지막 문제입니다");
+    }
+현재 문구가 "마지막 문제입니다"이면 "수고하셨습니다"로 변경
+
+아니면 다시 "마지막 문제입니다"로 되돌림
+
+문자열 비교 시 ==이 아니라 .equals() 사용 (객체 비교 방식)
+
+java
+복사
+편집
+add(label);
+add(button);
+구성된 라벨과 버튼을 현재 창에 추가
+
+FlowLayout 기준으로 위→아래 또는 좌→우 정렬됨
+
+java
+복사
+편집
+setVisible(true);
+창을 화면에 표시함 (필수 호출)
+
+java
+복사
+편집
+public static void main(String[] args) {
+    new ToggleLabelApp();
+}
+프로그램의 진입점
+
+main()에서 창 객체 생성 → 생성자 실행 → GUI 보임
+
+자바에서는 main()이 반드시 필요하며, 진입점 역할을 정확히 수행함
+
+✅ 요약 정리
+구조 요소	의미
+JFrame 상속	윈도우 창 자체가 클래스가 됨
+JLabel, JButton	출력과 입력 UI 요소
+addActionListener()	버튼 클릭 이벤트 처리
+label.getText() → setText()	텍스트 읽고 → 조건 분기 → 다시 설정
+setVisible(true)	화면에 창 띄우기
+
+더 확장해서 “여러 개 라벨 순차 변경”, “애니메이션 효과 추가”, “입력창/다이얼로그
