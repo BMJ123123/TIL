@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+class Addition {
+    protected int a, b;
+
+    public Addition(int a, int b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    public int getSum() {
+        return a + b;
+    }
+}
+
+public class test4 extends Addition {
+
+    public test4(int a, int b) {
+        super(a, b);
+    }
+
+    public void printTable() {
+        int min = Math.min(a, b);
+        for (int i = 1; i <= 9; i++)
+            System.out.println(min + " x " + i + " = " + (min * i));
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int x = sc.nextInt(), y = sc.nextInt();
+        test4 m = new test4(x, y);
+        System.out.println("합: " + m.getSum());
+        m.printTable();
+        sc.close();
+    }
+}
